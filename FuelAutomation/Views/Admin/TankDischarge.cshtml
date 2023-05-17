@@ -1,0 +1,66 @@
+﻿@model TankDischargeViewModel
+
+<div class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title" >
+                            <h4 class="card-title">Tank Boşaltım</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-danger">
+                            BU TANKI BOŞALTMAK ÜZERESİNİZ!
+                        </p>
+                        <form asp-action="TankDischarge" asp-controller="Admin" method="post">
+
+                            @if (@TempData["Success"] != null)
+                            {
+
+                                <div class="alert alert-success">
+
+                                    <strong> Başarılı!</strong> @TempData["Success"]
+                                </div>
+
+                            }
+                            @if (TempData["Fail"] != null)
+                            {
+                                <div class="alert alert-danger">
+
+                                    <strong> Hata!</strong> @TempData["Fail"]
+                                </div>
+                            }
+
+                            <div class="form-group">
+                                <label for="email">Yakıt Tipi</label>
+                                <input readonly="readonly" asp-for="FuelType" value="@Model.FuelType"  class="form-control bg-light" id="email1">
+                            </div>
+                            <div class="form-group ">
+                                <label for="pwd">Kapasite</label>
+                                <input readonly="readonly" asp-for="Capacity" value=@Model.Capacity class="form-control bg-light" id="pwd">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Mevcut Miktar</label>
+                                <input readonly="readonly" asp-for="Quantity" value=@Model.Quantity class="form-control bg-light" id="email1">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Boşaltım Miktarı</label>
+                                <input asp-for=DischargeQuantity class="form-control" id="email1">
+                                <span asp-validation-for="DischargeQuantity" class="text-danger"></span>
+                            </div>
+
+                            <input type="hidden" value=@Model.Id class="form-control" id="email1">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-danger">Boşalt</button>
+                            </div>
+                          
+                        </form>
+                    </div>
+                </div>
+       
+            </div>
+        </div>
+    </div>
+</div>

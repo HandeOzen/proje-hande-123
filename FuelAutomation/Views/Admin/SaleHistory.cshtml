@@ -1,0 +1,70 @@
+﻿@model List<SaleHistoryViewModel>
+
+<div class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Satış Geçmişi</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+
+                        <table id="datatable" class="table data-table table-striped">
+                            <thead>
+                                <tr class="ligth">
+                                    <th>#</th>
+                                    <th>Kullanıcı</th>
+                                    <th>Plaka</th>
+                                    <th>Yakıt Tipi</th>
+                                    <th>Yakıt Litresi</th>
+                                    <th>Fiyat</th>
+                                    <th>Tarih</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int i = 1;
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>@item.Name</td>
+                                            <td>@item.CarPlate</td>
+                                            <td>
+                                                @item.FuelType
+                                            </td>
+                                            <td>
+                                                @item.Quantity
+                                            <td>
+                                                    @item.Price
+                                            </td>
+                                            <td>
+                                                    @item.CreatedOn
+                                            </td>
+
+
+                                        </tr>
+                                        i++;
+                                    }
+                               
+                               
+                               }
+                                
+                               
+
+                            
+                            </tbody>
+                           
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

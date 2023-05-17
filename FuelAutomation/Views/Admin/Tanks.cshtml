@@ -1,0 +1,75 @@
+﻿@model List<TanksViewModel>
+
+<div class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+              
+                    <div class="card-body">
+                       
+                            <table id="datatable" class="table data-table table-striped">
+                                <thead>
+                                    <tr class="ligth">
+                                        <th>#</th>
+                                        <th>Yakıt Tipi</th>
+                                        <th>Kapasite</th>
+                                        <th>Doluluk</th>
+                                        <th>Yüzde</th>
+                                        <th>İşlem</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @{
+                                    int i = 1;
+                                    @foreach (var item in Model)
+                                    {
+
+
+
+                                        <tr>
+
+                                            <td>@i</td>
+                                            <td>@item.FuelType</td>
+                                            <td>@item.Capacity</td>
+                                            <td>
+                                                <div class="iq-progress-bar bg-secondary-light">
+                                                    <span class="bg-secondary iq-progress progress-1" data-percent="@(Convert.ToInt32(item.Quantity / item.Capacity* 100))"></span>
+                                                </div>
+                                            </td>
+                                            <td> <span class="ml-3">@((item.Quantity / item.Capacity)*100)%</span></td>
+                                            <td>
+                                                <div class="media align-items-center mt-md-0 mt-3">
+                                                    <a asp-controller="Admin" asp-action="TankFill" asp-route-id="@item.id" class="btn bg-success-light ">Doldur</a>
+                                                    <a asp-controller="Admin" asp-action="TankDischarge" asp-route-id="@item.id" class="btn bg-secondary-light">Boşalt</a>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                        i++;
+
+                                    }
+                                }
+                                   
+                                 
+          
+                               
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                    <th>#</th>
+                                    <th>Yakıt Tipi</th>
+                                    <th>Kapasite</th>
+                                    <th>Doluluk</th>
+                                    <th>Yüzde</th>
+                                    <th>İşlem</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

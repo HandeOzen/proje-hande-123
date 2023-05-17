@@ -1,0 +1,69 @@
+﻿
+@model TankFillViewModel
+
+<div class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Tank Dolum</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-success">
+                            BU TANKA DOLUM YAPMAKTASINIZ!
+                        </p>
+                        <form asp-action="TankFill" asp-controller="Admin"  method="post">
+                            @if (@TempData["Success"] != null)
+                            {
+
+                                <div class="alert alert-success">
+
+                                    <strong> Başarılı!</strong> @TempData["Success"]
+                                </div>
+
+                            }
+                            @if(TempData["Fail"] != null)
+                            {
+                                <div class="alert alert-danger">
+
+                                    <strong> Hata!</strong> @TempData["Fail"]
+                                </div>
+                            }
+                           
+                         
+                            <div class="form-group">
+                                <label for="email">Yakıt Tipi</label>
+                                <input readonly="readonly" asp-for="FuelType"  value="@Model.FuelType"   class="form-control bg-light" id="email1">
+                            </div>
+                            <div class="form-group ">
+                                <label for="pwd">Kapasite</label>
+                                <input readonly="readonly" asp-for="Capacity"   type="text" value=@Model.Capacity class="form-control bg-light" id="pwd">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Mevcut Miktar</label>
+                                <input readonly="readonly" asp-for="Quantity"   value=@Model.Quantity class="form-control bg-light" id="email1">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Dolum Miktarı</label>
+                                <input  asp-for="FillQuantity" class="form-control" id="email1">
+
+                                  <span asp-validation-for="FillQuantity" class="text-danger"></span>  
+                                 <input type="hidden" value=@Model.Id class="form-control" id="email1">
+                          
+
+                                  <div class="form-group">
+                            <button type="submit" class="btn btn-success">Doldur</button>
+                            </div>
+                            </div>
+                             
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

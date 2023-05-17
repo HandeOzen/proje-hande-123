@@ -1,0 +1,169 @@
+﻿
+@model UserAddViewModel
+<div class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Kullanıcı Ekle</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @if(TempData["Success"] != null)
+                        {
+                            <div class="alert alert-success">
+
+                                <strong> Başarılı!</strong>
+
+                                @TempData["Success"]
+
+                            </div>
+
+
+                        }
+                        @if (TempData["Fail"] != null)
+                        {
+                            <div class="alert alert-danger">
+
+                                <strong> Hata!</strong>
+
+                                @TempData["Fail"]
+
+                            </div>
+
+
+                        }
+                       
+                     
+                        <form asp-action="UserAdd" asp-controller="Admin" method="post">
+                            <div class="form-group">
+                                <label for="email">Email Adresi:</label>
+                                <input  asp-for="Email" class="form-control" id="email1">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">İsim:</label>
+                                <input asp-for="FirstName" class="form-control" id="email1">
+                                <div class="form-group">
+                                    <label for="email">Soyisim:</label>
+                                    <input asp-for="LastName" class="form-control" id="email1">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Şifre:</label>
+                                <input asp-for="Password" type="password"  class="form-control" id="pwd">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Yetki Seviyesi</label>
+                                <select asp-for="Role" class="form-control mb-3">
+                                    <option value="0" disabled>Yetki Seviyesi Seçiniz</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Staff">Personel</option>
+                                   
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Ekle</button>
+                          
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">Kullanıcı Listesi</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="table-responsive">
+                                @if (TempData["SuccessDelete"] != null)
+                                {
+                                    <div class="alert alert-success">
+
+                                        <strong> Başarılı!</strong>
+
+                                        @TempData["SuccessDelete"]
+
+                                    </div>
+
+
+                                }
+                                @if (TempData["FailDelete"] != null)
+                                {
+                                    <div class="alert alert-danger">
+
+                                        <strong> Hata!</strong>
+
+                                        @TempData["FailDelete"]
+
+                                    </div>
+
+
+                                }
+                                <table id="datatable" class="table table-striped data-table">
+                                    <thead>
+                                        <tr class="ligth">
+                                            <th>#</th>
+                                            <th>E-Mail</th>
+                                            <th>Adı</th>
+                                            <th>Yetki Seviyesi</th>
+
+                                            <th style="min-width: 100px">İşlem</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            int i = 1;
+                                            foreach (var item in @ViewBag.Users)
+                                            {
+
+                                                <tr>
+                                                    <td>@i</td>
+                                                    <td>@item.Email</td>
+                                                    <td>@(item.FirstName + " " + item.LastName)</td>
+
+
+                                                    <td>@item.Role</td>
+
+                                                    <td>
+                                                        <div class="flex align-items-center list-user-action">
+
+                                                            <input type="hidden" name="UserId" value="@item.UserId">
+                                                            <a class="btn btn-sm bg-primary" data-toggle="tooltip" data-placement="top" title=""
+                                                               data-original-title="Edit" href="/Admin/UserEdit/@item.UserId"><i class="ri-pencil-line mr-0"></i></a>
+
+
+                                                            <form asp-controller="Admin" asp-action="UserDelete" asp-route-id="@item.UserId" method="post">
+                                                                <button type="submit" class="btn btn-sm bg-primary" data-toggle="tooltip" data-placement="top" title=""
+                                                                        data-original-title="Delete">
+                                                                    <i class="ri-delete-bin-line mr-0"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                i++;
+
+                                            }
+                                        }
+                                        
+
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                    </div>
+
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

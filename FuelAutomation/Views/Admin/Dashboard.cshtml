@@ -1,0 +1,87 @@
+﻿
+
+<div class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card-transparent card-block card-stretch card-height">
+                    <div class="card-body p-0">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <div class="header-title">
+                                    <h4 class="card-title">Tank Doluluk Oranları</h4>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-inline p-0 mb-0">
+                                      @foreach (var item in @ViewBag.Tanks)
+                                    {
+                                    <li class="mb-1">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">@item.FuelTypes.Name (Tank No:@(@item.Id)) </p>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div class="iq-progress-bar bg-secondary-light">
+                                                            <span class="bg-secondary iq-progress progress-1" data-percent="@Convert.ToInt32(@item.Quantity / @item.Capacity * 100)"></span>
+                                                    </div>
+                                                    <span class="ml-3">@Convert.ToInt32(@item.Quantity / @item.Capacity * 100)%</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                    }
+                                  
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+     
+                </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-block card-stretch card-height">
+                    <div class="card-body">
+                        <div class="top-block d-flex align-items-center justify-content-between">
+                            <h5>Yapılan Satış Sayısı</h5>
+                            <span class="badge badge-primary">Günlük</span>
+                        </div>
+                        <h3><span class="counter">@ViewBag.CountDailySales</span></h3>
+                     
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-block card-stretch card-height">
+                    <div class="card-body">
+                        <div class="top-block d-flex align-items-center justify-content-between">
+                            <h5>Ciro</h5>
+                            <span class="badge badge-primary">Günlük</span>
+                        </div>
+                        <h3>₺<span class="counter">@ViewBag.TotalPrice</span></h3>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-block card-stretch card-height">
+                    <div class="card-body">
+                        <div class="top-block d-flex align-items-center justify-content-between">
+                            <h5>Toplam Personel Sayısı</h5>
+                           
+                        </div>
+                        <h3><span class="counter">@ViewBag.CountOfUser</span></h3>
+                       
+                       
+                    </div>
+                </div>
+            </div>
+            </div>
+       
+        </div>
+        </div>
+   
